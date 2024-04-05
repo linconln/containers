@@ -94,7 +94,7 @@ services:
 
   consumer:
     build:
-      context: .
+      context: app/
       dockerfile: dockerfile
     entrypoint:
       - python3
@@ -104,26 +104,6 @@ services:
       - redis
       - nginx
     restart: always
-
-  producer:
-    build:
-      context: .
-      dockerfile: dockerfile
-    entrypoint:
-      - python3
-      - producer.py
-    depends_on:
-      - consumer
-  
-  report:
-    build:
-      context: .
-      dockerfile: dockerfile
-    entrypoint:
-      - python3
-      - producer.py
-    depends_on:
-      - producer
 
 ## By default this config uses default local driver,
 ## For custom volumes replace with volume driver configuration.
