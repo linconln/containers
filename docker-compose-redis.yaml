@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+    command: [
+        "redis-server",
+        "--appendonly",
+        "yes",
+        "--port",
+        "6379"
+      ]
+    volumes:
+      - /dockerapp/redis/data:/data
+    restart: always
