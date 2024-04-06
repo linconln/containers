@@ -14,8 +14,6 @@ transaction_file = open("transaction.json")
 
 transactions = json.load(transaction_file)
 
-print(transactions)
-    
 transaction_file.close()
 
 for transaction in transactions:
@@ -24,3 +22,5 @@ for transaction in transactions:
                           routing_key="",
                           body=json.dumps(transaction)
                           )
+
+print("Finalizado")
