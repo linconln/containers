@@ -49,5 +49,6 @@ for chave in chaves:
 #        bucket_name=bucket_name,
 #        object_name= str_chave)
 
-    print(f"Download URL: [GET]{get_url}")
+    url = get_url.replace("nginx", "localhost")
+    print(f"Download URL: [GET] {url}")
 #print(f"Delete URL: [DELETE]{e_}")
