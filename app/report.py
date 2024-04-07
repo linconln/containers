@@ -3,7 +3,7 @@ import redis
 import io
 
 cliente = Minio(
-    endpoint="nginx:9000", 
+    endpoint="192.168.19.100:9000", 
     access_key="minioadmin", 
     secret_key="minioadmin",
     secure=False)
@@ -49,6 +49,5 @@ for chave in chaves:
 #        bucket_name=bucket_name,
 #        object_name= str_chave)
 
-    url = get_url.replace("nginx", "localhost")
-    print(f"Download URL: [GET] {url}")
+    print(f"Download URL: [GET] {get_url}")
 #print(f"Delete URL: [DELETE]{e_}")
