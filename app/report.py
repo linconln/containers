@@ -3,7 +3,7 @@ import redis
 import io
 
 cliente = Minio(
-    endpoint="192.168.19.100:9000", 
+    endpoint="nginx:9000", 
     access_key="minioadmin", 
     secret_key="minioadmin",
     secure=False)
