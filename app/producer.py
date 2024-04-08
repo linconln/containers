@@ -30,9 +30,11 @@ for transaction in transactions:
 from minio import Minio
 import redis
 import io
+import os
 
+SERVER = os.getenv("SERVER_NAME")
 cliente = Minio(
-    endpoint="nginx:9000", 
+    endpoint=f"{SERVER}:9000",
     access_key="minioadmin", 
     secret_key="minioadmin",
     secure=False)
