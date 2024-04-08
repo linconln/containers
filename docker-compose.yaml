@@ -20,18 +20,6 @@ x-minio-common: &minio-common
 # using nginx reverse proxy, load balancing, you can access
 # it through port 9000.
 services:
-  app:
-    build:
-      context: app/
-      dockerfile: dockerfile
-    entrypoint:
-      - /usr/bin/supervisord
-    depends_on:
-      - rabbit
-      - redis
-      - nginx
-    restart: always
-
   minio1:
     <<: *minio-common
     hostname: minio1
@@ -76,7 +64,7 @@ services:
   rabbit:
     image: rabbitmq:3.8.5-management
     healthcheck:
-      test: rabbitmq-diagnostics -q ping
+      test: rabbitmq-diagnostics check_port_connectivity --formatter json | tail -1 | grep -q '"result":"ok"'
       interval: 30s
       timeout: 30s
       retries: 3
@@ -107,6 +95,18 @@ services:
       retries: 3
     volumes:
       - redis-data:/data
+  app:
+    build:
+      context: app/
+      dockerfile: dockerfile
+    entrypoint:
+      - python
+      - producer.py
+    depends_on:
+      - rabbit
+      - redis
+      - nginx
+    restart: on-failure
 
 ## By default this config uses default local driver,
 ## For custom volumes replace with volume driver configuration.
