@@ -1,6 +1,0 @@
---2024-04-06 03:19:31--  http://localhost:9000/bucket/report-596.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256
-Resolving localhost (localhost)... 127.0.0.1
-Connecting to localhost (localhost)|127.0.0.1|:9000... connected.
-HTTP request sent, awaiting response... 403 Forbidden
-2024-04-06 03:19:31 ERROR 403: Forbidden.
-
