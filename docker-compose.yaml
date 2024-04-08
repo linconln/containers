@@ -1,3 +1,5 @@
+name: ada
+
 # Settings and configurations that are common for all containers
 x-minio-common: &minio-common
   image: quay.io/minio/minio
@@ -6,9 +8,9 @@ x-minio-common: &minio-common
     - "9000"
     - "9001"
 #  environment:
-    # MINIO_ROOT_USER: minioadmin
-    # MINIO_ROOT_PASSWORD: minioadmin
-    # MINIO_BROWSER_REDIRECT_URL: "https://192.168.19.38"
+#    MINIO_ROOT_USER: minioadmin
+#    MINIO_ROOT_PASSWORD: senha
+#    MINIO_BROWSER_REDIRECT_URL: "https://192.168.19.38"
   healthcheck:
     test: ["CMD", "mc", "ready", "local"]
     interval: 5s
@@ -25,12 +27,12 @@ services:
       dockerfile: dockerfile
     entrypoint:
       - python3
-      - consumer.py
+      - producer.py
     depends_on:
       - rabbit
       - redis
       - nginx
-    restart: always
+    restart: on-failure
 
   minio1:
     <<: *minio-common
