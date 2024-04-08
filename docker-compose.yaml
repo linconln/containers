@@ -25,8 +25,7 @@ services:
       context: app/
       dockerfile: dockerfile
     entrypoint:
-      - python3
-      - consumer.py
+      - /usr/bin/supervisord
     depends_on:
       - rabbit
       - redis
